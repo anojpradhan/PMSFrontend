@@ -1,11 +1,10 @@
+import { app_url } from "./url";
+
 export async function getSales(page = 1, limit = 8) {
   const token = localStorage.getItem("token");
-  const res = await fetch(
-    `http://localhost:3000/sales?page=${page}&limit=${limit}`,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    },
-  );
+  const res = await fetch(`${app_url}/sales?page=${page}&limit=${limit}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
   const data = await res.json(); // parse response
 
@@ -16,7 +15,7 @@ export async function getSales(page = 1, limit = 8) {
 
 export async function createSale(values) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:3000/sales", {
+  const res = await fetch(`${app_url}/sales`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +32,7 @@ export async function createSale(values) {
 
 export async function updateSale(id, values) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/sales/${id}`, {
+  const res = await fetch(`${app_url}/sales/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +49,7 @@ export async function updateSale(id, values) {
 
 export async function deleteSale(id) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/sales/${id}`, {
+  const res = await fetch(`${app_url}/sales/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -63,7 +62,7 @@ export async function deleteSale(id) {
 
 export async function getProducts() {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:3000/sales/products", {
+  const res = await fetch(`${app_url}/sales/products`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 

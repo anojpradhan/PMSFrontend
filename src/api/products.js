@@ -1,14 +1,13 @@
+import { app_url } from "./url";
+
 export async function getProducts(page = 1, limit = 8) {
   const token = localStorage.getItem("token");
-  const res = await fetch(
-    `http://localhost:3000/products?page=${page}&limit=${limit}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+  const res = await fetch(`${app_url}/products?page=${page}&limit=${limit}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-  );
+  });
   if (!res.ok) {
     const error = await res.json();
     throw new Error(error.message || "Failed to fetch products");
@@ -18,7 +17,7 @@ export async function getProducts(page = 1, limit = 8) {
 
 export async function addProduct(data) {
   const token = localStorage.getItem("token");
-  const res = await fetch("http://localhost:3000/products", {
+  const res = await fetch(`${app_url}/products`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,7 +34,7 @@ export async function addProduct(data) {
 
 export async function updateProduct(id, data) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/products/${id}`, {
+  const res = await fetch(`${app_url}/products/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +51,7 @@ export async function updateProduct(id, data) {
 
 export async function deleteProduct(id) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/products/${id}`, {
+  const res = await fetch(`${app_url}/products/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });

@@ -1,5 +1,7 @@
+import { app_url } from "./url";
+
 export async function loginRequest(data) {
-  const res = await fetch("http://localhost:3000/auth/login", {
+  const res = await fetch(`${app_url}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,7 +18,7 @@ export async function loginRequest(data) {
 }
 
 export async function registerRequest(data) {
-  const res = await fetch("http://localhost:3000/auth/register", {
+  const res = await fetch(`${app_url}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
